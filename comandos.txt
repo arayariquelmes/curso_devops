@@ -1,0 +1,39 @@
+kubectl api-versions #muestra la version de la api
+minikube status # muestra el estado del cluster de minikube
+minikube start #inicia el cluster de minikube
+minikube stop #Detiene el cluster de minikube
+minikube dashboard #Levanta y muestra el dashboard de kubernetes de minikube
+kubectl version --client #Muestra la version de kubectl instalada
+kubectl get services #Muestra servicios levantados
+
+kubectl run ejemplo --image=httpd:latest --port=80 #crea un pod con el nombre ejemplo en base a la imagen otorgada
+kubectl expose pod ejemplo --type=LoadBalancer --port=8080 --target-port=80 #Genera un servicio a partir del pod y expone el puerto 80 en el puerto 8080 de la maquina host
+kubectl describe pod ejemplo #Muestra los datos del pod de nombre ejemplo
+kubectl get pods #Muestra los pods 
+
+echo -n "palabra" | base64 #Convierte palabra a base 64
+
+echo "codigobase64" | base64 - d #Decodifica desde base 64
+#Aplica secrets (archivos que mantienen info sensible)
+kubectl apply -f secret-dev.yaml
+kubectl apply -f secret-pgadmin.yaml
+#Aplica configmaps define configuracion de persistencia del volumen
+kubectl apply -f configmap-postgres-initbd.yaml
+#Aplica volumen
+kubectl apply -f persistence-volume.yaml
+#Aplica claims del volumen
+kubectl apply -f persistence-volume-claim.yaml
+#Despliega los pods
+kubectl apply -f deployment-postgres.yaml
+kubectl apply -f deployment-pgadmin.yaml
+#Levanta los servicios
+kubectl apply -f service-postgres.yaml
+kubectl apply -f service-pgadmin.yaml
+
+#Muestra el estado del cluster
+kubectl get all
+#Elimina todas las definiciones del directorio
+kubectl delete -f ./
+
+#Aplica todo lo que esta en el directorio:
+kubectl apply -f ./
