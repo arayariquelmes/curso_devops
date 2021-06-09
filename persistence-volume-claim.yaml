@@ -1,3 +1,4 @@
+#it is a reques of resource (persistence volume) from a pod by example, teh pod claim by a storage throug PVC
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:

@@ -37,3 +37,21 @@ kubectl delete -f ./
 
 #Aplica todo lo que esta en el directorio:
 kubectl apply -f ./
+
+#Genera variables para que el engine apunte al registro de minikube
+minikube docker-env
+#Aplica la configuracion para utilizar  los datos de minikube en la engine
+eval $(minikube -p minikube docker-env)
+
+
+#Solo para curso sotobotero
+#Construye jar del ejemplo de back
+docker build -t billingapp-back:0.0.4 --no-cache --build-arg JAR_FILE=billing-0.0.4-SNAPSHOT.jar .
+#Construye app angular
+docker build -t billingapp-front:0.0.4 --no-cache .
+
+
+#CICD
+#Crear servidor jenkins
+docker build -t jenkins/blue_ocean_ci --no-cache .
+docker run -p 880:8080 -p 50000:50000 --name jenkinsblue  jenkins/blueocean_ci

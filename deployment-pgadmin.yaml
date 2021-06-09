@@ -4,8 +4,8 @@ metadata:
   name: pgadmin-deployment
 spec:
   selector:
-    matchLabels:
-      app: pgadmin
+   matchLabels:
+    app: pgadmin
   replicas: 1
   template:
     metadata:
@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: pgadmin4
-          image: dpage/pgadmin4
+          image: dpage/pgadmin4        
           envFrom:
             - secretRef:
                 name: pgadmin-secret
           ports:
             - containerPort: 80
-              name: pgadminport    
+              name: pgadminport

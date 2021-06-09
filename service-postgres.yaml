@@ -4,11 +4,12 @@ metadata:
   name: postgres-service
   labels:
     app: postgres
-spec:
+spec:  
   ports:
   - name: postgres
     port: 5432
-    nodePort: 30432
+    nodePort : 30432 
+  #type: LoadBalancer
   type: NodePort
   selector:
-    app: postgres
+   app: postgres
